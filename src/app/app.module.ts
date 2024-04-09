@@ -7,7 +7,8 @@ import { UserLoginComponent } from './UserComponents/user-login/user-login.compo
 import { DashBoardComponent } from './DashboardComponents/dash-board/dash-board.component';
 import { UserRegisterComponent } from './UserComponents/user-register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { EventComponent } from './event/event.component'
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http'
     UserLoginComponent,
     DashBoardComponent,
     UserRegisterComponent,
+    EventComponent,
     
   ],
   imports: [

@@ -7,16 +7,25 @@ import { User } from 'src/Models/User';
   providedIn: 'root'
 })
 export class UserService {
-  
-  constructor(private http:HttpClient) { }
-  baseURL: string = "https://localhost:44317/api/";
-  register(user:User): Observable<any>{
 
-      const headers = { 'content-type': 'application/json','Accept': 'application/json'}  
+  constructor(private http:HttpClient) { }
+  baseURL: string = "https://localhost:44375/";
+  register(user:User): Observable<any>{
+      user.Flag="INSERT"
+      const headers = { 'content-type': 'application/json','Accept': 'application/json'}
       const body=JSON.stringify(user);
       console.log("Body")
       console.log(body)
-      return this.http.post(this.baseURL + 'User/CreateUser', body,{'headers':headers})
-    
+
+      return this.http.post(this.baseURL + 'User/Register', body,{'headers':headers})
+
+  }
+
+  login(user:User):Observable<any>{
+    user.Flag="LOGIN"
+    const headers={'content-type':'application/json','Accept':'appliction/json'}
+    const body=JSON.stringify(user);
+    console.log(body)
+    return this.http.post(this.baseURL+"User/Login",body,{'headers':headers})
   }
 }
