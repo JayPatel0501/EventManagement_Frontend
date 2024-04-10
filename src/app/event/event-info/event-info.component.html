@@ -3,25 +3,31 @@
 		<div class="col-12 col-lg-11">
 			<div class="card card0 rounded-0">
 				<div class="row">
-					<div class="col-md-5 d-md-block d-none p-0 box">
-						<div class="card rounded-0 border-0 card1" id="bill">
-							<h3 id="heading1">Payment Summary</h3>
-							<div class="row">
+					<div class="col-md-5 d-md-block d-none p-0 box ">
+						<div class="card rounded-0 border-0 card1 overflow-auto vh-50" style="height: 100vh;" id="bill">
+							<h3 id="heading1">Activities</h3>
+							<div class="row" *ngfor="let activity of activities">
 								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Electronics</h2>
-									<small class="bill-date">2017 Feb 10 at 10:30 PM</small>
+									<h2 class="bill-head">{{activity.ActivityName}}</h2>
+									<small class="bill-date">{{activity.ActivityDESC}} </small>
 								</div>
 								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">CAF</h2>
+									<small class="bill-date">{{activity.ActivityStartDate}} </small>
+                  <h2 class="bill-head">TO</h2>
+									<small class="bill-date">{{activity.ActivityEndDate}} </small>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Food</h2>
-									<small class="bill-date">2017 Feb 25 at 11:30 PM</small>
+                  <h6 class="bill-head">zsggzdghd fagdafabvd anvdanvVdv</h6>
+                  <small class="bill-date">zsggzdghdfagdaf</small>
+
 								</div>
 								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
+                  <small class="bill-date">2017 Feb 25 at 11:30 PM</small>
+
+									<h6 class="bill-head-to">TO</h6>
+									<small class="bill-date">2017 Feb 25 at 11:30 PM</small>
 								</div>
 							</div>
 							<div class="row">
@@ -43,6 +49,33 @@
 									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
 								</div>
 							</div>
+              <div class="row">
+								<div class="col-lg-7 col-8 mt-4 line pl-4">
+									<h2 class="bill-head">Accessories</h2>
+									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
+								</div>
+								<div class="col-lg-5 col-4 mt-4">
+									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
+								</div>
+							</div>
+              <div class="row">
+								<div class="col-lg-7 col-8 mt-4 line pl-4">
+									<h2 class="bill-head">Accessories</h2>
+									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
+								</div>
+								<div class="col-lg-5 col-4 mt-4">
+									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
+								</div>
+							</div>
+              <div class="row">
+								<div class="col-lg-7 col-8 mt-4 line pl-4">
+									<h2 class="bill-head">Accessories</h2>
+									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
+								</div>
+								<div class="col-lg-5 col-4 mt-4">
+									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-md-12 red-bg">
 									<p class="bill-date" id="total-label">Total Price</p>
@@ -55,36 +88,41 @@
 
 					<div class="col-md-7 col-sm-12 p-0 box">
 						<div class="card rounded-0 border-0 card2" id="paypage">
-							<div class="form-card">
+							<div class="form-card " style="margin-top: 0!important;">
 			                    <h2 id="heading2" class="text-danger">{{eventInfo.EventName}}</h2>
 			                    <div class="radio-group">
 			                        <div class='radio' data-value="credit"><img [src]="'data:image/jpg;base64,' + EventImageBase64DB " width="600px" height="120px"></div>
 			                        <!-- <div class='radio' data-value="paypal"><img src="https://i.imgur.com/5QFsx7K.jpg" width="200px" height="60px"></div> -->
 			                        <br>
 			                    </div>
-			                    <label class="pay">Name on Card</label>
+			                    <label class="pay">Activity Titile</label>
 			                    <input type="text" name="holdername" placeholder="John Smith">
+			                    <label for="exampleFormControlTextarea1" class="pay">Event Description</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="EventDESC"  rows="3"></textarea>
 			                    <div class="row">
 			                        <div class="col-8 col-md-6">
-			                            <label class="pay">Card Number</label>
-			                            <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19">
+			                            <label for="inputPassword" class="pay">Start Date</label>
+			                            <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
+                                  <input class="form-control" id="inputPassword" formControlName="EventStartDate" type="datetime-local" placeholder="Create a password" />
+
 			                        </div>
 			                        <div class="col-4 col-md-6">
-			                            <label class="pay">CVV</label>
-			                            <input type="password" name="cvcpwd" placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3">
+                                <label for="inputPassword" class="pay">End Date</label>
+                                <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
+                                <input class="form-control" id="inputPassword" formControlName="EventStartDate" type="datetime-local" placeholder="Create a password" />
 			                        </div>
 			                    </div>
 			                    <div class="row">
 			                        <div class="col-md-12">
-			                            <label class="pay">Expiration Date</label>
+			                            <label class="pay">Price</label>
 			                        </div>
 			                        <div class="col-md-12">
-			                            <input type="text" name="exp" id="exp" placeholder="MM/YY" minlength="5" maxlength="5">
+			                            <input type="text" name="exp" id="exp" placeholder="₹" minlength="5" maxlength="5">
 			                        </div>
 			                    </div>
 			                    <div class="row">
 			                        <div class="col-md-6">
-			                            <input type="submit" value="MAKE A PAYMENT &nbsp; &#xf178;" class="btn btn-info placeicon">
+			                            <input type="submit" value="Add Activity" class="btn btn-info placeicon bg-dark">
 			                        </div>
 			                    </div>
 			                </div>

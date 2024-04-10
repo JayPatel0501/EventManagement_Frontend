@@ -35,6 +35,14 @@ body {
 	font-size: 30px;
 }
 
+.bill-head-to {
+	color: #ffffff;
+	font-weight: bold;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	font-size: 20px;
+}
+
 .line {
 	border-right: 1px grey solid;
 }
@@ -134,7 +142,7 @@ body {
     box-sizing: border-box;
     border: 2px solid lightgrey;
     cursor:pointer;
-    margin: 8px 25px 8px 0px; 
+    margin: 8px 25px 8px 0px;
 }
 
 .radio:hover {
