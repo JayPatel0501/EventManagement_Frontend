@@ -1,4 +1,5 @@
 export class EventInfo {
+    Flag!:string;
     EventId!: number;
     EventName!: string;
     EventDESC!: string;

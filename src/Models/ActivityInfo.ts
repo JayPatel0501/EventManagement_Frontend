@@ -1,4 +1,5 @@
-export class EventInfo {
+export class ActivityInfo {
+    Flag!:string;
     ActivityId!: number;
     ActivityName!: string;
     ActivityDESC!: string;

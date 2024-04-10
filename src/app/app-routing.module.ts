@@ -4,6 +4,9 @@ import { DashBoardComponent } from './DashboardComponents/dash-board/dash-board.
 import { UserLoginComponent } from './UserComponents/user-login/user-login.component';
 import { UserRegisterComponent } from './UserComponents/user-register/user-register.component';
 import { EventComponent } from './event/event.component';
+import { AddEnventComponent } from './event/add-envent/add-envent.component';
+import { EventInfo } from 'src/Models/EventInfo';
+import { EventInfoComponent } from './event/event-info/event-info.component';
 
 const routes: Routes = [
   {
@@ -21,7 +24,16 @@ const routes: Routes = [
   {
     path:'events',
     component:EventComponent
-  }
+  },
+  {
+    path:'event/:id',
+    component:EventInfoComponent
+  },
+  {
+    path:'addevent',
+    component:AddEnventComponent
+  },
+
 ];
 
 @NgModule({

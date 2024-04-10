@@ -8,7 +8,9 @@ import { DashBoardComponent } from './DashboardComponents/dash-board/dash-board.
 import { UserRegisterComponent } from './UserComponents/user-register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { EventComponent } from './event/event.component'
+import { EventComponent } from './event/event.component';
+import { AddEnventComponent } from './event/add-envent/add-envent.component';
+import { EventInfoComponent } from './event/event-info/event-info.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { EventComponent } from './event/event.component'
     DashBoardComponent,
     UserRegisterComponent,
     EventComponent,
+    AddEnventComponent,
+    EventInfoComponent,
     
   ],
   imports: [
