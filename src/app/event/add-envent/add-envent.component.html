@@ -1,6 +1,6 @@
 
 
-<div class="bg-primary z-index-1">
+<div class="bg-dark z-index-1">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -32,13 +32,13 @@
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" formControlName="EventStartDate" type="datetime-local" placeholder="Create a password" />
+                                                    <input class="form-control" id="inputPassword" formControlName="EventStartDate"  type="datetime-local" placeholder="Create a password" />
                                                     <label for="inputPassword">Start Date </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" formControlName="EventEndDate" type="datetime-local" placeholder="Confirm password" />
+                                                    <input class="form-control" id="inputPasswordConfirm" [min]="addEventForm.get('EventStartDate')?.value" formControlName="EventEndDate" type="datetime-local" placeholder="Confirm password" />
                                                     <label for="inputPasswordConfirm">End Date</label>
                                                 </div>
                                             </div>

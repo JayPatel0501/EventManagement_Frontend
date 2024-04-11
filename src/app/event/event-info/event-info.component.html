@@ -46,9 +46,9 @@
 
 			                        </div>
 			                        <div class="col-4 col-md-6">
-                                <label for="inputPassword" class="pay">End Date</label>
+                                <label for="inputPassword" class="pay" >End Date</label>
                                 <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
-                                <input class="form-control" id="inputPassword" formControlName="ActivityEndDate" type="datetime-local" placeholder="Create a password" />
+                                <input class="form-control" id="inputPassword" [min]="activityInfoForm.get('ActivityStartDate')?.value" formControlName="ActivityEndDate" type="datetime-local" placeholder="Create a password" />
 			                        </div>
 			                    </div>
 			                    <div class="row">
