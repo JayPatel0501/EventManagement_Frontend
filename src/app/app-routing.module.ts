@@ -7,11 +7,28 @@ import { EventComponent } from './event/event.component';
 import { AddEnventComponent } from './event/add-envent/add-envent.component';
 import { EventInfo } from 'src/Models/EventInfo';
 import { EventInfoComponent } from './event/event-info/event-info.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path:'dashboard',
-    component:DashBoardComponent
+    component:DashBoardComponent,
+    children:[
+        {
+          path:'events',
+          component:EventComponent,
+        
+        },
+        {
+          path:'event/:id',
+          component:EventInfoComponent
+        },
+        {
+          path:'addevent',
+          component:AddEnventComponent
+        },
+      
+    ]
   },
   {
     path:'login',
@@ -23,7 +40,8 @@ const routes: Routes = [
   },
   {
     path:'events',
-    component:EventComponent
+    component:EventComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'event/:id',

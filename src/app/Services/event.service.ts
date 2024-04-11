@@ -34,10 +34,35 @@ export class EventService {
 
   }
 
+  PublishEvent(EventId:number): Observable<any>{
+    let event=new EventInfo()
+    event.Flag="UPDATE"
+    event.EventId=EventId
+    event.Publish=true
+    const headers = { 'content-type': 'application/json','Accept': 'application/json'}
+    const body=JSON.stringify(event);
+    console.log("Body")
+    console.log(body)
+
+    return this.http.post(this.baseURL + 'EventInfo/UpdateEventByEventId', body,{'headers':headers})
+  }
+  getAllNotPublishEvents(): Observable<any>{
+    let event=new EventInfo()
+    event.Flag="NOTPUBLISHEVENTS"
+    const headers = { 'content-type': 'application/json','Accept': 'application/json'}
+    const body=JSON.stringify(event);
+    console.log("Body")
+    console.log(body)
+
+    return this.http.post(this.baseURL + 'EventInfo/GetNotPublishEvents', body,{'headers':headers})
+
+  }
+
   getEventByEventId(EventId:number): Observable<any>{
     let event=new EventInfo()
     event.Flag="GETEVENTBYID"
     event.EventId=EventId
+
     const headers = { 'content-type': 'application/json','Accept': 'application/json'}
     const body=JSON.stringify(event);
     console.log("Body")
@@ -46,4 +71,5 @@ export class EventService {
     return this.http.post(this.baseURL + 'EventInfo/GetAllEvent', body,{'headers':headers})
 
   }
+
 }

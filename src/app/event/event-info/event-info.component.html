@@ -6,87 +6,26 @@
 					<div class="col-md-5 d-md-block d-none p-0 box ">
 						<div class="card rounded-0 border-0 card1 overflow-auto vh-50" style="height: 100vh;" id="bill">
 							<h3 id="heading1">Activities</h3>
-							<div class="row" *ngfor="let activity of activities">
+							
+							<div class="row" *ngFor="let activity of activities">
 								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">{{activity.ActivityName}}</h2>
-									<small class="bill-date">{{activity.ActivityDESC}} </small>
-								</div>
-								<div class="col-lg-5 col-4 mt-4">
-									<small class="bill-date">{{activity.ActivityStartDate}} </small>
-                  <h2 class="bill-head">TO</h2>
-									<small class="bill-date">{{activity.ActivityEndDate}} </small>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-7 col-8 mt-4 line pl-4">
-                  <h6 class="bill-head">zsggzdghd fagdafabvd anvdanvVdv</h6>
-                  <small class="bill-date">zsggzdghdfagdaf</small>
+                  			<h6 class="bill-head">{{activity.ActivityName}}</h6>
+                  <small class="bill-date">{{activity.ActivityDESC}}</small>
 
 								</div>
 								<div class="col-lg-5 col-4 mt-4">
-                  <small class="bill-date">2017 Feb 25 at 11:30 PM</small>
+                  						<small class="bill-date">{{activity.ActivityStartDateTime}}</small>
 
-									<h6 class="bill-head-to">TO</h6>
-									<small class="bill-date">2017 Feb 25 at 11:30 PM</small>
+									<h2 class="bill-head-to">TO</h2>
+									<small class="bill-date">{{activity.ActivityEndDateTime}}</small>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Grocery</h2>
-									<small class="bill-date">2017 Mar 17 at 10:45 PM</small><br>
-									<small class="bill-date">2017 Mar 18 at 11:45 PM</small>
-								</div>
-								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">LHR</h2>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Accessories</h2>
-									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
-								</div>
-								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
-								</div>
-							</div>
-              <div class="row">
-								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Accessories</h2>
-									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
-								</div>
-								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
-								</div>
-							</div>
-              <div class="row">
-								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Accessories</h2>
-									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
-								</div>
-								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
-								</div>
-							</div>
-              <div class="row">
-								<div class="col-lg-7 col-8 mt-4 line pl-4">
-									<h2 class="bill-head">Accessories</h2>
-									<small class="bill-date">2017 Apr 13 at 05:30 PM</small>
-								</div>
-								<div class="col-lg-5 col-4 mt-4">
-									<h2 class="bill-head px-xl-5 px-lg-4">JFK</h2>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 red-bg">
-									<p class="bill-date" id="total-label">Total Price</p>
-									<h2 class="bill-head" id="total">$ 523.65</h2>
-									<small class="bill-date" id="total-label">Price includes all taxes</small>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 
 					<div class="col-md-7 col-sm-12 p-0 box">
+						<form [formGroup]="activityInfoForm" (ngSubmit)="OnSubmit()">
 						<div class="card rounded-0 border-0 card2" id="paypage">
 							<div class="form-card " style="margin-top: 0!important;">
 			                    <h2 id="heading2" class="text-danger">{{eventInfo.EventName}}</h2>
@@ -96,20 +35,20 @@
 			                        <br>
 			                    </div>
 			                    <label class="pay">Activity Titile</label>
-			                    <input type="text" name="holdername" placeholder="John Smith">
+			                    <input type="text" name="holdername" placeholder="John Smith" formControlName="ActivityName">
 			                    <label for="exampleFormControlTextarea1" class="pay">Event Description</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="EventDESC"  rows="3"></textarea>
+                          		<textarea class="form-control" id="exampleFormControlTextarea1" formControlName="ActivityDESC"  rows="3"></textarea>
 			                    <div class="row">
 			                        <div class="col-8 col-md-6">
 			                            <label for="inputPassword" class="pay">Start Date</label>
 			                            <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
-                                  <input class="form-control" id="inputPassword" formControlName="EventStartDate" type="datetime-local" placeholder="Create a password" />
+                                  <input class="form-control" id="inputPassword" formControlName="ActivityStartDate" type="datetime-local" placeholder="Create a password" />
 
 			                        </div>
 			                        <div class="col-4 col-md-6">
                                 <label for="inputPassword" class="pay">End Date</label>
                                 <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
-                                <input class="form-control" id="inputPassword" formControlName="EventStartDate" type="datetime-local" placeholder="Create a password" />
+                                <input class="form-control" id="inputPassword" formControlName="ActivityEndDate" type="datetime-local" placeholder="Create a password" />
 			                        </div>
 			                    </div>
 			                    <div class="row">
@@ -117,16 +56,19 @@
 			                            <label class="pay">Price</label>
 			                        </div>
 			                        <div class="col-md-12">
-			                            <input type="text" name="exp" id="exp" placeholder="₹" minlength="5" maxlength="5">
+			                            <input type="text" name="exp" id="exp" formControlName="ActivityPrice" placeholder="₹" minlength="5" maxlength="5">
 			                        </div>
 			                    </div>
 			                    <div class="row">
 			                        <div class="col-md-6">
 			                            <input type="submit" value="Add Activity" class="btn btn-info placeicon bg-dark">
+			                        </div><div class="col-md-6">
+			                            <input type="button" value="Publish Activity" (click)="OnPublish()" class="btn btn-info placeicon bg-dark">
 			                        </div>
 			                    </div>
 			                </div>
 						</div>
+					 </form>
 					</div>
 				</div>
 			</div>

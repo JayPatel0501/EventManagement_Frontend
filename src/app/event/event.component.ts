@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventService } from '../Services/event.service';
 import { EventInfo } from 'src/Models/EventInfo';
 
@@ -7,9 +7,14 @@ import { EventInfo } from 'src/Models/EventInfo';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class EventComponent {
+export class EventComponent implements OnInit {
   events!:EventInfo[];
+  NotPublishEvent!:EventInfo[];
   public constructor(private eventService:EventService){
+   
+
+  }
+  ngOnInit(): void {
     this.eventService.getAll().subscribe(
       (response)=>{
         console.log(response)
@@ -21,8 +26,19 @@ export class EventComponent {
         console.log(error)
       }
     )
+    this.eventService.getAllNotPublishEvents().subscribe(
+      (response)=>{
+        console.log(response)
+        this.NotPublishEvent=response.ArrayOfResponse
+        console.log(this.NotPublishEvent)
 
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
+
 
 
 }

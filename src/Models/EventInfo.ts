@@ -9,4 +9,5 @@ export class EventInfo {
     CreatedDateTime!: Date;
     UpdatedDateTime !: Date;
     AdminId !: number;
+    Publish!:boolean;
 }

@@ -3,8 +3,8 @@ export class ActivityInfo {
     ActivityId!: number;
     ActivityName!: string;
     ActivityDESC!: string;
-    ActivityStartDate !: string;
-    ActivityEndDate !: string;
+    ActivityStartDateTime !: string;
+    ActivityEndDateTime !: string;
     ActivityPrice!: string;
     CreatedDateTime!: Date;
     UpdatedDateTime !: Date;

@@ -1,5 +1,5 @@
 export class Admin{
- 
+    Flag!:string;
     AdminId !:number;
     AdminName !:string;
     AdminAddress!:string;

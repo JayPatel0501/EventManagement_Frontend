@@ -1,13 +1,26 @@
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
+   All Events
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
-    <li *ngFor="let event of events"><a class="dropdown-item" [routerLink]="['/event',event.EventId]" >{{event.EventName}}</a></li>
+    <li *ngFor="let event of events"><a class="dropdown-item" [routerLink]="['/dashboard/event',event.EventId]" >{{event.EventName}}</a></li>
     
   </ul>
 </div>
-<div id="carouselExampleDark" class="carousel carousel-dark slide">
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+   Not Publish Event
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
+    <li *ngFor="let event of NotPublishEvent"><a class="dropdown-item" [routerLink]="['/dashboard/event',event.EventId]" >{{event.EventName}}</a></li>
+    
+  </ul>
+</div>
+
+<app-add-envent></app-add-envent>
+
+<!-- <div id="carouselExampleDark" class="carousel carousel-dark slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -44,4 +57,4 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</div>
+</div> -->

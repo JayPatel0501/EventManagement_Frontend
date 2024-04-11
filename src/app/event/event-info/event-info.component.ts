@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ActivityInfo } from 'src/Models/ActivityInfo';
 import { EventInfo } from 'src/Models/EventInfo';
@@ -16,6 +17,18 @@ export class EventInfoComponent implements OnInit {
   activities!:ActivityInfo[];
   EventImageBase64DB!:string
 
+  activityInfoForm =new FormGroup({
+   
+    
+    ActivityName: new FormControl(),
+    ActivityDESC: new FormControl(),
+    ActivityStartDate : new FormControl(),
+    ActivityEndDate : new FormControl(),
+    ActivityPrice: new FormControl(),
+    
+  }
+  )
+
   constructor( private route:ActivatedRoute,private activityService:ActivityServiecService,private eventService:EventService){
 
   }
@@ -28,11 +41,13 @@ export class EventInfoComponent implements OnInit {
   });
    
   }
-  setActivityDetails(){
+  setEventInfo(){
     this.eventService.getEventByEventId(this.EventId).subscribe(
       (response)=>{
         this.eventInfo=response.ArrayOfResponse[0];
+      
         console.log(this.eventInfo);
+        
         this.EventImageBase64DB=this.eventInfo.EventImgPath
         
 
@@ -43,12 +58,46 @@ export class EventInfoComponent implements OnInit {
       }
     )
   };
-  setEventInfo(){
-    this.eventService.getEventByEventId(this.EventId).subscribe(
+  setActivityDetails(){
+    console.log(" set activity ")
+    this.activityService.GetAllActivityByEventId(this.EventId).subscribe(
       (response)=>{
-        this.activities=response.ArrayOfResponse
+        this.activities=response["ArrayOfResponse"]
         console.log(this.activities);
       },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+  OnPublish(){
+    this.eventService.PublishEvent(this.EventId).subscribe(
+      (response)=>{
+        console.log(response);
+        this.setActivityDetails();
+      }
+      ,
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
+
+  OnSubmit(){
+    let activityInfo=new ActivityInfo();
+    activityInfo.ActivityName=this.activityInfoForm.controls.ActivityName.value;
+    activityInfo.ActivityDESC=this.activityInfoForm.controls.ActivityDESC.value;
+    activityInfo.ActivityStartDateTime=this.activityInfoForm.value.ActivityStartDate;
+    activityInfo.ActivityEndDateTime=this.activityInfoForm.value.ActivityEndDate;
+    activityInfo.ActivityPrice=this.activityInfoForm.controls.ActivityPrice.value;
+    activityInfo.EventId=this.EventId
+    this.activityService.AddActivity(activityInfo).subscribe(
+      (response)=>{
+        console.log(response);
+        this.setActivityDetails();
+      }
+      ,
       (error)=>{
         console.log(error);
       }

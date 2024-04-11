@@ -9,6 +9,12 @@
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                 <div class="card-body">
                                     <form [formGroup]="loginUserForm" (ngSubmit)="OnSubmit()">
+                                       
+                                        <input type="radio" id="male" name="Role" value="User" formControlName="Role">
+                                        <label for="male">User</label>
+                                        <br>
+                                        <input type="radio" id="female" name="Role" value="Admin" formControlName="Role">
+                                        <label for="female">Admin</label>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputEmail" type="email" formControlName="UserEmail" placeholder="name@example.com" />
                                             <label for="inputEmail">Email address</label>

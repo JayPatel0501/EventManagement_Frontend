@@ -11,6 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { EventComponent } from './event/event.component';
 import { AddEnventComponent } from './event/add-envent/add-envent.component';
 import { EventInfoComponent } from './event/event-info/event-info.component'
+import { CommonModule } from '@angular/common';
+import { NotPublishEventsComponent } from './event/not-publish-events/not-publish-events.component';
+import { AllEventsComponent } from './all-events/all-events.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { EventInfoComponent } from './event/event-info/event-info.component'
     EventComponent,
     AddEnventComponent,
     EventInfoComponent,
+    NotPublishEventsComponent,
+    AllEventsComponent,
     
   ],
   imports: [
