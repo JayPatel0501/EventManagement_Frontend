@@ -33,33 +33,29 @@ export class UserRegisterComponent {
     user.UserEmail = this.registrationForm.controls['UserEmail'].value;
     user.UserPassword = this.registrationForm.controls['UserPassword'].value;
     user.UserMobile = this.registrationForm.controls['UserMobile'].value;
-    let abc = document.getElementById(
-      'ResponseMessageId'
-    ) as HTMLInputElement | null;
-    let demo=document.getElementById("ResponseMessageId")?.style.display;
+
 
     let res = this.userService.register(user).subscribe(
       (response) => {
         console.log(response);
-        if (response['ID'] == 200 && abc !== null) {
-          this.responseMessage.Message = response['Message'];
-          this.responseMessage.StatusCode = response['ID'];
+        if(response.Message=="User Inserted Successfully"){
 
-          // Store abc in a local variable where it's guaranteed to be not null
-          const abcElement = abc as HTMLElement;
+            this.responseMessage.Message="login success Fully"
+            this.responseMessage.StatusCode=200
 
-          abcElement.style.display = 'block';
 
-          // Use abcElement inside setTimeout
-          setTimeout(() => {
-            if (abcElement) {
-              abcElement.style.display = 'none';
-              this.router.navigate(["login"]);
-            }
-          }, 1000);
+
         }
+        else{
+          this.responseMessage.Message=response.Message
+          this.responseMessage.StatusCode=500
 
-        console.log(this.responseMessage.StatusCode);
+          console.log(this.responseMessage)
+        }
+        setTimeout(() => {
+          this.responseMessage.Message="Null"
+          this.responseMessage.StatusCode=0
+        }, 1000);
       },
       (error) => {
         console.log(error);

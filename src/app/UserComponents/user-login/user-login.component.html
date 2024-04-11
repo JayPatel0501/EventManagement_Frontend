@@ -3,13 +3,22 @@
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
+                  <ng-template [ngIf]="responseMessage.StatusCode==200">
+
+                    <div class="alert alert-success  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;" id="ResponseMessageId" role="alert">{{responseMessage.Message}}</div>
+                  </ng-template>
+                  <ng-template [ngIf]="responseMessage.StatusCode==500">
+                    <div  class="alert alert-danger  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;" id="ResponseMessageId" role="alert">
+                    {{responseMessage.Message}}
+                  </div>
+                </ng-template>
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                 <div class="card-body">
                                     <form [formGroup]="loginUserForm" (ngSubmit)="OnSubmit()">
-                                       
+
                                         <input type="radio" id="male" name="Role" value="User" formControlName="Role">
                                         <label for="male">User</label>
                                         <br>

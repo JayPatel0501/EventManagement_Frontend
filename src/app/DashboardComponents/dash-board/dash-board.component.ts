@@ -8,9 +8,22 @@ import { Router } from '@angular/router';
 })
 export class DashBoardComponent {
   constructor(private router:Router){
-   
+
   }
   role!:string;
+  OnGoDashBoardEvents(){
+    this.router.navigate(["dashboard/allevents"])
+  }
+  OnGoAddEvents(){
+
+    this.router.navigate(["dashboard/admin/addevent"])
+
+  }
+
+  OnGoUnPublishEvents(){
+    this.router.navigate(["dashboard/admin/unPublishEvent"])
+  }
+
   OnLogout(){
         sessionStorage.setItem("isLogin","flase")
         this.router.navigate(["login"]);

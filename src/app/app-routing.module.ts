@@ -8,6 +8,7 @@ import { AddEnventComponent } from './event/add-envent/add-envent.component';
 import { EventInfo } from 'src/Models/EventInfo';
 import { EventInfoComponent } from './event/event-info/event-info.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AllEventsComponent } from './all-events/all-events.component';
 
 const routes: Routes = [
   {
@@ -17,19 +18,25 @@ const routes: Routes = [
         {
           path:'events',
           component:EventComponent,
-        
+
         },
         {
-          path:'event/:id',
+          path:'allevents',
+          component:AllEventsComponent,
+
+        },
+        {
+          path:'admin/event/:id',
           component:EventInfoComponent
         },
         {
-          path:'addevent',
+          path:'admin/addevent',
           component:AddEnventComponent
         },
-      
+
     ]
   },
+
   {
     path:'login',
     component:UserLoginComponent
@@ -38,19 +45,7 @@ const routes: Routes = [
     path:'register',
     component:UserRegisterComponent
   },
-  {
-    path:'events',
-    component:EventComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path:'event/:id',
-    component:EventInfoComponent
-  },
-  {
-    path:'addevent',
-    component:AddEnventComponent
-  },
+
 
 ];
 

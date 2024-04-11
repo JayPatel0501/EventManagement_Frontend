@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Admin } from 'src/Models/Admin';
+import { ResponseMessage } from 'src/Models/ResponseMessage';
 import { User } from 'src/Models/User';
 import { AdminService } from 'src/app/Services/services/admin.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -18,6 +19,8 @@ export class UserLoginComponent {
     Role:new FormControl()
   })
 
+  responseMessage=new ResponseMessage()
+
   public constructor(private router:Router,private userService:UserService,private adminService:AdminService){
 
   }
@@ -25,7 +28,7 @@ export class UserLoginComponent {
     this.router.navigate(["register"]);
   }
   RoleClick(){
-    
+
   }
   OnSubmit(){
     if(this.loginUserForm.controls["Role"].value=="User"){
@@ -37,17 +40,36 @@ export class UserLoginComponent {
       console.log(response)
 
       if(response["ArrayOfResponse"].length>0){
+        if(response.Message=="200|Data Found"){
+          this.responseMessage.Message="login success Fully"
+          this.responseMessage.StatusCode=200
+        }else{
+          this.responseMessage.Message=response.Message
+          this.responseMessage.StatusCode=500
+          console.log(this.responseMessage)
+        }
+
         sessionStorage.setItem("isUserLogin",'true')
         sessionStorage.setItem("isAdminLogin",'false')
         // this.router.navigate(["dashboard"]);
       }
-     
+      else{
+        this.responseMessage.Message=response.Message
+        this.responseMessage.StatusCode=500
+
+        console.log(this.responseMessage)
+      }
+      setTimeout(() => {
+        this.responseMessage.Message="Null"
+        this.responseMessage.StatusCode=0
+      }, 1000);
+
     },
   (error)=>{
     console.log(error)
   })
   }
-    
+
 
     else if(this.loginUserForm.controls["Role"].value=="Admin"){
       console.log(this.loginUserForm.value)
@@ -60,15 +82,15 @@ export class UserLoginComponent {
       if(response["ArrayOfResponse"].length>0){
         sessionStorage.setItem("isAdminLogin",'true')
         sessionStorage.setItem("isUserLogin",'false')
-    
+
       }
-     
+
     },
   (error)=>{
     console.log(error)
   })
   }
     }
-    
+
 
 }
