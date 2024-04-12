@@ -31,7 +31,7 @@ export class UserLoginComponent {
 
   }
   OnSubmit(){
-    
+
     if(this.loginUserForm.controls["Role"].value=="User"){
       console.log(this.loginUserForm.value)
     let user=new User();
@@ -44,7 +44,7 @@ export class UserLoginComponent {
         if(response.Message=="200|Data Found"){
           this.responseMessage.Message="login success Fully"
           this.responseMessage.StatusCode=200
-         
+
         }else{
           this.responseMessage.Message=response.Message
           this.responseMessage.StatusCode=500
@@ -67,7 +67,7 @@ export class UserLoginComponent {
         // this.router.navigate(["dashboard/allevents"])
       }, 1000);
 
-      
+
 
     },
   (error)=>{
@@ -77,19 +77,40 @@ export class UserLoginComponent {
 
 
     else if(this.loginUserForm.controls["Role"].value=="Admin"){
-    
+
       console.log(this.loginUserForm.value)
     let admin=new Admin();
     admin.AdminEmail = this.loginUserForm.controls["UserEmail"].value;
     admin.AdminPassword=this.loginUserForm.controls["UserPassword"].value
     this.adminService.login(admin).subscribe((response)=>{
       console.log(response)
-      debugger
+
       if(response["ArrayOfResponse"].length>0){
+        if(response.Message=="200|Data Found"){
+          this.responseMessage.Message="login success Fully"
+          this.responseMessage.StatusCode=200
+
+        }else{
+          this.responseMessage.Message=response.Message
+          this.responseMessage.StatusCode=500
+          console.log(this.responseMessage)
+        }
         sessionStorage.setItem("isAdminLogin",'true')
         sessionStorage.setItem("isUserLogin",'false')
         this.router.navigateByUrl("/dashboard/allevents")
+        // this.router.navigate(["dashboard/allevents"])
       }
+      else{
+        this.responseMessage.Message=response.Message
+        this.responseMessage.StatusCode=500
+
+        console.log(this.responseMessage)
+      }
+      setTimeout(() => {
+        this.responseMessage.Message="Null"
+        this.responseMessage.StatusCode=0
+        // this.router.navigate(["dashboard/allevents"])
+      }, 1000);
 
     },
   (error)=>{

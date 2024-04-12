@@ -13,7 +13,9 @@ import { AdmingardGuard } from './guards/admingard.guard';
 import { AllPublishedEventsComponent } from './all-published-events/all-published-events.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
+
     path:'dashboard',
     component:DashBoardComponent,
     children:[
