@@ -1,9 +1,19 @@
 <div class="container-fluid">
 	<div class="row justify-content-center">
+		<ng-template [ngIf]="responseMessage.StatusCode==500">
+			<div  class="alert alert-danger  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;" id="ResponseMessageId" role="alert">
+			{{responseMessage.Message}}
+		  </div>
+		</ng-template>
+		<ng-template [ngIf]="responseMessage.StatusCode==200">
+			<div  class="alert alert-success  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;" id="ResponseMessageId" role="alert">
+			{{responseMessage.Message}}
+		  </div>
+		</ng-template>
 		<div class="col-12 col-lg-11">
 			<div class="card card0 rounded-0">
 				<div class="row">
-					<div class="col-md-5 d-md-block d-none p-0 box ">
+					<!-- <div class="col-md-5 d-md-block d-none p-0 box ">
 						<div class="card rounded-0 border-0 card1 overflow-auto vh-50" style="height: 100vh;" id="bill">
 							<h3 id="heading1">Activities</h3>
 							
@@ -22,33 +32,40 @@
 							</div>
 							
 						</div>
-					</div>
-
+					</div> -->
+					<ng-template [ngIf]="this.selecttedOpration=='AddActivity'">
 					<div class="col-md-7 col-sm-12 p-0 box">
 						<form [formGroup]="activityInfoForm" (ngSubmit)="OnSubmit()">
 						<div class="card rounded-0 border-0 card2" id="paypage">
 							<div class="form-card " style="margin-top: 0!important;">
-			                    <h2 id="heading2" class="text-danger">{{eventInfo.EventName}}</h2>
-			                    <div class="radio-group">
-			                        <div class='radio' data-value="credit"><img [src]="'data:image/jpg;base64,' + EventImageBase64DB " width="600px" height="120px"></div>
-			                        <!-- <div class='radio' data-value="paypal"><img src="https://i.imgur.com/5QFsx7K.jpg" width="200px" height="60px"></div> -->
-			                        <br>
-			                    </div>
+			                    
 			                    <label class="pay">Activity Titile</label>
-			                    <input type="text" name="holdername" placeholder="John Smith" formControlName="ActivityName">
+			                    <input type="text" name="holdername" placeholder="John Smith" formControlName="ActivityName" >
+								<div class="text-danger" *ngIf="validation['ActivityName'].errors && validation['ActivityName'].touched && validation['ActivityName'].errors['required']">
+									Enter the Valid Activity Name
+								</div>
 			                    <label for="exampleFormControlTextarea1" class="pay">Event Description</label>
                           		<textarea class="form-control" id="exampleFormControlTextarea1" formControlName="ActivityDESC"  rows="3"></textarea>
+								  <div class="text-danger" *ngIf="validation['ActivityDESC'].errors && validation['ActivityDESC'].touched && validation['ActivityDESC'].errors['required']">
+									Enter the Description
+								</div>
 			                    <div class="row">
 			                        <div class="col-8 col-md-6">
 			                            <label for="inputPassword" class="pay">Start Date</label>
 			                            <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
-                                  <input class="form-control" id="inputPassword" formControlName="ActivityStartDate" type="datetime-local" placeholder="Create a password" />
+                                  <input class="form-control" id="inputPassword" [min]="eventInfo.EventStartDate"  [max]="activityInfoForm.get('ActivityEndDate')?.value" formControlName="ActivityStartDate" type="datetime-local" placeholder="Create a password" />
+								  <div class="text-danger" *ngIf="validation['ActivityStartDate'].errors && validation['ActivityStartDate'].touched && validation['ActivityStartDate'].errors['required']">
+									Enter the Valid Date
+								</div>
 
 			                        </div>
 			                        <div class="col-4 col-md-6">
                                 <label for="inputPassword" class="pay" >End Date</label>
                                 <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
-                                <input class="form-control" id="inputPassword" [min]="activityInfoForm.get('ActivityStartDate')?.value" formControlName="ActivityEndDate" type="datetime-local" placeholder="Create a password" />
+                                <input class="form-control" id="inputPassword" [min]="activityInfoForm.get('ActivityStartDate')?.value"  [max]="eventInfo.EventEndDate" formControlName="ActivityEndDate" type="datetime-local" placeholder="Create a password" />
+								<div class="text-danger" *ngIf="validation['ActivityEndDate'].errors && validation['ActivityEndDate'].touched && validation['ActivityEndDate'].errors['required']">
+									Enter the Valid Date
+								</div>
 			                        </div>
 			                    </div>
 			                    <div class="row">
@@ -57,6 +74,9 @@
 			                        </div>
 			                        <div class="col-md-12">
 			                            <input type="text" name="exp" id="exp" formControlName="ActivityPrice" placeholder="₹" minlength="5" maxlength="5">
+										<div class="text-danger" *ngIf="validation['ActivityPrice'].errors && validation['ActivityPrice'].touched && validation['ActivityPrice'].errors['required']">
+											Enter the Valid Price
+										</div>
 			                        </div>
 			                    </div>
 			                    <div class="row">
@@ -69,6 +89,71 @@
 			                </div>
 						</div>
 					 </form>
+					</div>
+				</ng-template>
+				<ng-template [ngIf]="this.selecttedOpration=='ShowActivity'">
+					<div class="col-md-7 col-sm-12 p-0 box">
+						<table class="table">
+							<thead>
+							  <tr>
+								<th scope="col">Name</th>
+								<th scope="col">DESC</th>
+								<th scope="col">StartDate</th>
+								<th scope="col">EndDate</th>
+								<th scope="col">Price</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr *ngFor="let activity of activities">
+								<th scope="row" >{{activity.ActivityName}}</th>
+								<td>{{activity.ActivityDESC}}</td>
+								<td>{{activity.ActivityStartDateTime}}</td>
+								<td>{{activity.ActivityEndDateTime}}</td>
+								<td>{{activity.ActivityPrice}}</td>
+							  </tr>
+							  
+							</tbody>
+						  </table>
+				</div>
+				</ng-template>
+					
+					<div class="col-md-5 d-md-block d-none p-0 box ">
+						<div class="container m-auto  ">
+						<!-- <h2 id="heading2" class="text-danger">{{eventInfo.EventName}}</h2>
+						<div class="radio-group">
+							<div class='radio' data-value="credit"><img [src]="'data:image/jpg;base64,' + EventImageBase64DB " width="400px" height="200px"></div>
+							
+							<br>
+						</div> -->
+						<div class="">
+							<div class="card " style="width: 25rem;">
+								<img [src]="'data:image/jpg;base64,' + EventImageBase64DB " width="400px" height="200px" class="card-img-top" alt="...">
+								<div class="card-body">
+								  <div><h2 class="card-title ">{{eventInfo.EventName}}</h2>
+									<ng-template [ngIf]="eventInfo.Publish">
+										<span  class="alert alert-success     "  id="ResponseMessageId" role="alert">
+										Published
+										</span>
+									</ng-template>
+								  </div>
+								  <p class="card-text  mt-2">{{eventInfo.EventDESC}}</p>
+								<ng-template [ngIf]="role=='Admin'">
+
+									<a  class="btn btn-primary" (click)="onChageOpration()">{{this.ChageOption}}</a>
+								</ng-template>
+							<ng-template [ngIf]="role=='User'">
+								<a  class="btn btn-primary" >{{this.selecttedOpration}}</a>
+							</ng-template>
+								  <div class="col-lg-5 col-4 mt-4">
+									<small class=" text-blue">{{eventInfo.EventStartDate}}</small>
+
+							  <h2 class="bill-head-to text-black">TO</h2>
+							  <small class=" text-blue">{{eventInfo.EventStartDate}}</small>
+						  </div>
+								</div>
+							  </div>
+						</div>
+					</div>
 					</div>
 				</div>
 			</div>

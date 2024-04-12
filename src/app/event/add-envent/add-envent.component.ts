@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EventInfo } from 'src/Models/EventInfo';
+import { ResponseMessage } from 'src/Models/ResponseMessage';
 import { EventService } from 'src/app/Services/event.service';
 
 
@@ -16,6 +17,7 @@ export class AddEnventComponent  {
   }
   file:any;
   fileBase64Db!:string
+  responseMessage=new ResponseMessage()
   addEventForm=new FormGroup({
     
     EventName:new FormControl(),
@@ -39,6 +41,22 @@ export class AddEnventComponent  {
     this.eventService.addEvent(eventInfo).subscribe(
       (response)=>{
          console.log(response)
+
+         if(response.Message=="Event Inserted Successfully"){
+          this.responseMessage.Message="Event Inserted Successfully"
+          this.responseMessage.StatusCode=200
+         
+        }else{
+          this.responseMessage.Message=response.Message
+          this.responseMessage.StatusCode=500
+          console.log(this.responseMessage)
+        }
+
+        setTimeout(() => {
+          this.responseMessage.Message="Null"
+          this.responseMessage.StatusCode=0
+          // this.router.navigate(["dashboard/allevents"])
+        }, 1000);
       },
       (error)=>{
         console.log(error)

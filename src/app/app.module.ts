@@ -14,6 +14,8 @@ import { EventInfoComponent } from './event/event-info/event-info.component'
 import { CommonModule } from '@angular/common';
 import { NotPublishEventsComponent } from './event/not-publish-events/not-publish-events.component';
 import { AllEventsComponent } from './all-events/all-events.component';
+import { AllPublishedEventsComponent } from './all-published-events/all-published-events.component';
+import { ShowActivityComponent } from './show-activity/show-activity.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AllEventsComponent } from './all-events/all-events.component';
     EventInfoComponent,
     NotPublishEventsComponent,
     AllEventsComponent,
+    AllPublishedEventsComponent,
+    ShowActivityComponent,
     
   ],
   imports: [

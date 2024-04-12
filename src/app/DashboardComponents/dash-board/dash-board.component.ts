@@ -8,12 +8,24 @@ import { Router } from '@angular/router';
 })
 export class DashBoardComponent {
   constructor(private router:Router){
-
+     if(sessionStorage.getItem("isUserLogin")=='true'){
+      this.role="User"
+     }
+     else if(sessionStorage.getItem("isAdminLogin")=='true'){
+      this.role="Admin"
+     }
   }
   role!:string;
   OnGoDashBoardEvents(){
-    this.router.navigate(["dashboard/allevents"])
+    if( this.role=="Admin"){
+      this.router.navigate(["dashboard/allevents"])
+    }
+    if( this.role=="User"){
+      this.router.navigate(["dashboard/allPublishedEvents"])
+    }
+    
   }
+  
   OnGoAddEvents(){
 
     this.router.navigate(["dashboard/admin/addevent"])

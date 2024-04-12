@@ -3,6 +3,16 @@
 <div class="bg-dark z-index-1">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
+            <ng-template [ngIf]="responseMessage.StatusCode==500">
+                <div  class="alert alert-danger  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;" id="ResponseMessageId" role="alert">
+                {{responseMessage.Message}}
+              </div>
+            </ng-template>
+            <ng-template [ngIf]="responseMessage.StatusCode==200">
+                <div  class="alert alert-success  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;" id="ResponseMessageId" role="alert">
+                {{responseMessage.Message}}
+              </div>
+            </ng-template>
             <main>
                 <div class="container">
                   <div class="alert alert-success  m-4 position-absolute w-75 z-index-5 " style="z-index: 100000000000;display: none;" id="ResponseMessageId"role="alert">

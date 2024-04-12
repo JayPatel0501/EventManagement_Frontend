@@ -1,4 +1,4 @@
-<body class="bg-danger">
+<body class="text-white" style=" background-color: rgb(93, 192, 199);">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -14,21 +14,21 @@
                 </ng-template>
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5" style=" color: rgb(101, 104, 104);">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                 <div class="card-body">
-                                    <form [formGroup]="loginUserForm" (ngSubmit)="OnSubmit()">
+                                    <form [formGroup]="loginUserForm" (ngSubmit)="OnSubmit()" >
 
-                                        <input type="radio" id="male" name="Role" value="User" formControlName="Role">
+                                        <input type="radio" id="male" name="Role" value="User" formControlName="Role" checked>
                                         <label for="male">User</label>
                                         <br>
                                         <input type="radio" id="female" name="Role" value="Admin" formControlName="Role">
                                         <label for="female">Admin</label>
-                                        <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3  mt-3 ">
                                             <input class="form-control" id="inputEmail" type="email" formControlName="UserEmail" placeholder="name@example.com" />
                                             <label for="inputEmail">Email address</label>
                                         </div>
-                                        <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3 ">
                                             <input class="form-control" id="inputPassword" type="password" formControlName="UserPassword" placeholder="Password" />
                                             <label for="inputPassword">Password</label>
                                         </div>
@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="password.html">Forgot Password?</a>
-                                            <button class="btn btn-primary" type="submit">Login</button>
+                                            <button class="btn btn-dark" type="submit">Login</button>
                                         </div>
                                     </form>
                                 </div>

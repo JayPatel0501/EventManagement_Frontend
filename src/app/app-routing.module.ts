@@ -9,6 +9,8 @@ import { EventInfo } from 'src/Models/EventInfo';
 import { EventInfoComponent } from './event/event-info/event-info.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AllEventsComponent } from './all-events/all-events.component';
+import { AdmingardGuard } from './guards/admingard.guard';
+import { AllPublishedEventsComponent } from './all-published-events/all-published-events.component';
 
 const routes: Routes = [
   {
@@ -18,20 +20,34 @@ const routes: Routes = [
         {
           path:'events',
           component:EventComponent,
-
+          canActivate:[AdmingardGuard]
         },
         {
           path:'allevents',
           component:AllEventsComponent,
+          canActivate:[AdmingardGuard]
+
+        },
+        {
+          path:'allPublishedEvents',
+          component:AllPublishedEventsComponent,
+          canActivate:[AuthGuard]
 
         },
         {
           path:'admin/event/:id',
-          component:EventInfoComponent
+          component:EventInfoComponent,
+          // canActivate:[AdmingardGuard]
         },
         {
           path:'admin/addevent',
-          component:AddEnventComponent
+          component:AddEnventComponent,
+          canActivate:[AdmingardGuard]
+        },
+        {
+          path:'admin/showAll',
+          component:AddEnventComponent,
+          canActivate:[AdmingardGuard]
         },
 
     ]

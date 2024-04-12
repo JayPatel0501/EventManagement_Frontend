@@ -33,6 +33,17 @@ export class EventService {
     return this.http.post(this.baseURL + 'EventInfo/GetAllEvent', body,{'headers':headers})
 
   }
+  getAllPublishedEvent(): Observable<any>{
+    let event=new EventInfo()
+    event.Flag="GETPUBLISHEDEVENTS"
+    const headers = { 'content-type': 'application/json','Accept': 'application/json'}
+    const body=JSON.stringify(event);
+    console.log("Body")
+    console.log(body)
+
+    return this.http.post(this.baseURL + 'EventInfo/GetPublishEvents', body,{'headers':headers})
+
+  }
 
   PublishEvent(EventId:number): Observable<any>{
     let event=new EventInfo()
