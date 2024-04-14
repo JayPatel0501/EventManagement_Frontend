@@ -84,6 +84,7 @@ export class UserLoginComponent {
     admin.AdminPassword=this.loginUserForm.controls["UserPassword"].value
     this.adminService.login(admin).subscribe((response)=>{
       console.log(response)
+      let adminId=response["ArrayOfResponse"][0].AdminId.toString()
 
       if(response["ArrayOfResponse"].length>0){
         if(response.Message=="200|Data Found"){
@@ -96,6 +97,8 @@ export class UserLoginComponent {
           console.log(this.responseMessage)
         }
         sessionStorage.setItem("isAdminLogin",'true')
+        sessionStorage.setItem("AdminId",adminId)
+        // console.log(sessionStorage.getItem("AdminId"))
         sessionStorage.setItem("isUserLogin",'false')
         this.router.navigateByUrl("/dashboard/allevents")
         // this.router.navigate(["dashboard/allevents"])

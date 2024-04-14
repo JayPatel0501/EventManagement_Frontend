@@ -1,7 +1,7 @@
 
 <div class="container p-4" >
   <!-- start event block -->
-  <div class="row align-items-center event-block no-gutters margin-40px-bottom"  *ngFor="let event of events">
+  <div class="row align-items-center event-block no-gutters margin-40px-bottom"  *ngFor="let event of events" style="background-color: rgb(241, 251, 252);;">
       <div class="col-lg-5 col-sm-12">
           <div class="position-relative">
               <img [src]="'data:image/jpg;base64,' + event.EventImgPath " alt="">

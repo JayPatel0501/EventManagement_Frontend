@@ -36,7 +36,7 @@ export class AddEnventComponent  {
     eventInfo.EventStartDate=this.addEventForm.controls["EventStartDate"].value;
     eventInfo.EventEndDate=this.addEventForm.controls["EventEndDate"].value;
     eventInfo.EventImgPath=this.file
-    eventInfo.AdminId=2                // static Admin Id
+    eventInfo.AdminId=parseInt(sessionStorage.getItem("AdminId")! )      // static Admin Id)
 
     this.eventService.addEvent(eventInfo).subscribe(
       (response)=>{

@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AllEventsComponent } from './all-events/all-events.component';
 import { AdmingardGuard } from './guards/admingard.guard';
 import { AllPublishedEventsComponent } from './all-published-events/all-published-events.component';
+import { AllUnpublishEventsComponent } from './all-unpublish-events/all-unpublish-events.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,6 +35,12 @@ const routes: Routes = [
           path:'allPublishedEvents',
           component:AllPublishedEventsComponent,
           canActivate:[AuthGuard]
+
+        },
+        {
+          path:'admin/unPublishEvent',
+          component:AllUnpublishEventsComponent,
+          canActivate:[AdmingardGuard]
 
         },
         {
