@@ -12,6 +12,7 @@ import { AllEventsComponent } from './all-events/all-events.component';
 import { AdmingardGuard } from './guards/admingard.guard';
 import { AllPublishedEventsComponent } from './all-published-events/all-published-events.component';
 import { AllUnpublishEventsComponent } from './all-unpublish-events/all-unpublish-events.component';
+import { UpdateActivityComponent } from './update-activity/update-activity.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -51,6 +52,11 @@ const routes: Routes = [
         {
           path:'admin/addevent',
           component:AddEnventComponent,
+          canActivate:[AdmingardGuard]
+        },
+        {
+          path:'admin/event/:id/updateactivity',
+          component:UpdateActivityComponent,
           canActivate:[AdmingardGuard]
         },
         {

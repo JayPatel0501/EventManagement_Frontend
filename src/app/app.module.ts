@@ -17,6 +17,7 @@ import { AllEventsComponent } from './all-events/all-events.component';
 import { AllPublishedEventsComponent } from './all-published-events/all-published-events.component';
 import { ShowActivityComponent } from './show-activity/show-activity.component';
 import { AllUnpublishEventsComponent } from './all-unpublish-events/all-unpublish-events.component';
+import { UpdateActivityComponent } from './update-activity/update-activity.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AllUnpublishEventsComponent } from './all-unpublish-events/all-unpublis
     AllPublishedEventsComponent,
     ShowActivityComponent,
     AllUnpublishEventsComponent,
+    UpdateActivityComponent,
     
   ],
   imports: [

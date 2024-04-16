@@ -1,0 +1,56 @@
+   {{activityInfoUpdateForm.valid | json}}
+    <form [formGroup]="activityInfoUpdateForm" (ngSubmit)="OnSubmit()">
+        
+    <div class="card rounded-0 border-0 card2" id="paypage">
+        <div class="form-card " style="margin-top: 0!important;">
+            
+            <label class="pay">Activity Titile</label>
+            <input type="text" name="holdername" placeholder="John Smith" formControlName="ActivityName" >
+            <div class="text-danger" *ngIf="activityInfoUpdateForm.get('ActivityName')?.hasError('required') && activityInfoUpdateForm.get('ActivityName')?.touched">
+                Enter the Valid Activity Name
+            </div>
+            <label for="exampleFormControlTextarea1" class="pay">Event Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="ActivityDESC"  rows="3"></textarea>
+              <div class="text-danger" *ngIf="activityInfoUpdateForm.get('ActivityDESC')?.hasError('required') && activityInfoUpdateForm.get('ActivityDESC')?.touched ">
+                Enter the Description
+            </div>
+            <div class="row">
+                <div class="col-8 col-md-6">
+                    <label for="inputPassword" class="pay">Start Date</label>
+                    <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
+              <input class="form-control" id="inputPassword" 
+              
+              formControlName="ActivityStartDate" type="datetime-local" placeholder="Create a password" />
+              <div class="text-danger" *ngIf="activityInfoUpdateForm.get('ActivityStartDate')?.hasError('required') && activityInfoUpdateForm.get('ActivityStartDate')?.touched">
+                Enter the Valid Date
+            </div>
+
+                </div>
+                <div class="col-4 col-md-6">
+            <label for="inputPassword" class="pay" >End Date</label>
+            <!-- <input type="text" name="cardno" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19"> -->
+            <input class="form-control" id="inputPassword"  formControlName="ActivityEndDate" type="datetime-local" placeholder="Create a password" />
+            <div class="text-danger" *ngIf="activityInfoUpdateForm.get('ActivityEndDate')?.hasError('required') && activityInfoUpdateForm.get('ActivityEndDate')?.touched">
+                Enter the Valid Date
+            </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="pay">Price</label>
+                </div>
+                <div class="col-md-12">
+                    <input type="text" name="exp" id="exp" formControlName="ActivityPrice" placeholder="₹" minlength="5" maxlength="5">
+                    <div class="text-danger" *ngIf="activityInfoUpdateForm.get('ActivityPrice')?.hasError('required') && activityInfoUpdateForm.get('ActivityPrice')?.touched ">
+                        Enter the Valid Price
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" value="Update Activity" class="btn btn-info placeicon bg-dark">
+                </div>
+            </div>
+        </div>
+    </div>
+ </form>

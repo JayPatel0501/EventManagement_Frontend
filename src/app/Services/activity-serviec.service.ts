@@ -35,4 +35,16 @@ export class ActivityServiecService {
 
     return this.http.post(this.baseURL + 'ActivityInfo/AddActivity', body,{'headers':headers})
   }
+  UpdateActivity(activityInfo: ActivityInfo): Observable<any>{
+  
+  
+    activityInfo.Flag="UPDATE"
+    
+    const headers = { 'content-type': 'application/json','Accept': 'application/json'}
+    const body=JSON.stringify(activityInfo);
+    console.log("Body")
+    console.log(body)
+
+    return this.http.post(this.baseURL + 'ActivityInfo/UpdateActivity', body,{'headers':headers})
+  }
 }

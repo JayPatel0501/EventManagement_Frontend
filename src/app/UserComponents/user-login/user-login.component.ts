@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Admin } from 'src/Models/Admin';
 import { ResponseMessage } from 'src/Models/ResponseMessage';
@@ -14,9 +14,9 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class UserLoginComponent {
   loginUserForm=new FormGroup({
-    UserEmail:new FormControl(),
-    UserPassword:new FormControl(),
-    Role:new FormControl()
+    UserEmail:new FormControl("",[Validators.required]),
+    UserPassword:new FormControl("",[Validators.required]),
+    Role:new FormControl('User',[Validators.required])
   })
 
   responseMessage=new ResponseMessage()
@@ -31,12 +31,14 @@ export class UserLoginComponent {
 
   }
   OnSubmit(){
-
+    debugger
+    if(this.loginUserForm.valid)
+      {
     if(this.loginUserForm.controls["Role"].value=="User"){
       console.log(this.loginUserForm.value)
     let user=new User();
-    user.UserEmail = this.loginUserForm.controls["UserEmail"].value;
-    user.UserPassword=this.loginUserForm.controls["UserPassword"].value
+    user.UserEmail = this.loginUserForm.value.UserEmail || "";
+    user.UserPassword =this.loginUserForm.value.UserPassword||"";
     this.userService.login(user).subscribe((response)=>{
       console.log(response)
         debugger
@@ -80,8 +82,8 @@ export class UserLoginComponent {
 
       console.log(this.loginUserForm.value)
     let admin=new Admin();
-    admin.AdminEmail = this.loginUserForm.controls["UserEmail"].value;
-    admin.AdminPassword=this.loginUserForm.controls["UserPassword"].value
+    admin.AdminEmail != this.loginUserForm.controls["UserEmail"].value;
+    admin.AdminPassword!=this.loginUserForm.controls["UserPassword"].value
     this.adminService.login(admin).subscribe((response)=>{
       console.log(response)
       let adminId=response["ArrayOfResponse"][0].AdminId.toString()
@@ -121,6 +123,9 @@ export class UserLoginComponent {
   })
   }
     }
-
-
+  
+  else{
+    return 
+  }
+  }
 }

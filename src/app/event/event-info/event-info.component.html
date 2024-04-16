@@ -33,6 +33,11 @@
 							
 						</div>
 					</div> -->
+					<ng-template [ngIf]="this.selecttedOpration=='UpdateActivity'">
+						<div class="col-md-7 col-sm-12 p-0 box">
+						<app-update-activity [eventInfo]="eventInfo" [selectedActivityInfo]="selectedActivity"></app-update-activity>
+					</div>
+					</ng-template>
 					<ng-template [ngIf]="this.selecttedOpration=='AddActivity'">
 					<div class="col-md-7 col-sm-12 p-0 box">
 						<form [formGroup]="activityInfoForm" (ngSubmit)="OnSubmit()">
@@ -108,12 +113,21 @@
 								<td>{{activity.ActivityStartDateTime}}</td>
 								<td>{{activity.ActivityEndDateTime}}</td>
 								<td>{{activity.ActivityPrice}}</td>
+								<ng-template [ngIf]="role=='Admin'">
+
+									<td><div class="col-md-6">
+										<input type="button" value="UpdateActivity" class="btn btn-info placeicon bg-dark" (click)="OnUpdateActivity(activity)">
+									</div></td>
+								</ng-template>
+								
 							  </tr>
 							  
 							</tbody>
 						  </table>
 				</div>
 				</ng-template>
+
+			
 					
 					<div class="col-md-5 d-md-block d-none p-0 box ">
 						<div class="container m-auto  ">
@@ -151,11 +165,17 @@
 								</div>
 							  </div>
 
-							  <div class="row">
-							<div class="col-md-6">
-									<input type="button" value="Publish Activity" (click)="OnPublish()" class="btn btn-info placeicon bg-dark">
-								</div>
-							</div>
+							  <ng-template [ngIf]="role=='Admin'">
+
+								<div class="row">
+									<div class="col-md-6">
+											<input type="button" value="Publish Activity" (click)="OnPublish()" class="btn btn-info placeicon bg-dark">
+										</div>
+									</div>
+							</ng-template>
+
+
+							 
 						</div>
 					</div>
 					</div>
